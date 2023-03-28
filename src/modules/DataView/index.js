@@ -23,7 +23,7 @@ const DataView = () => {
             key: 'id',
         },
         {
-            title: 'Name',
+            title: 'First Name',
             dataIndex: 'name',
             key: 'name',
         },

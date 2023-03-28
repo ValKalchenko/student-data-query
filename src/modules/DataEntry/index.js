@@ -1,31 +1,24 @@
-import { Card, Input, Button, message, Form} from "antd";
+import { Card, Input, Button, message, Form } from "antd";
 import { useEffect, useState } from "react";
 import { DataStore } from "aws-amplify";
 import { Student } from "../../models";
 
 
 const DataEntry = () => {
-    const [firstName, setName,] = useState('');
-    const [lastname, setLastName] = useState('')
+    const [name, setName,] = useState('');
+    const [lastName, setLastName] = useState('')
     const [major, setMajor,] = useState('');
-    const [credits, setCareerCredits,] = useState();
-    const [gradyear, setGradYear,] = useState();
+    const [careerCredits, setCareerCredits,] = useState('');
+    const [graduationYear, setGradYear,] = useState('');
     const [students, setStudents] = useState();
 
-    useEffect(() => {
-        setName(Student.firstName);
-        setLastName(Student.lastname);
-        setMajor(Student.major);
-        setCareerCredits(Student.credits);
-        setGradYear(Student.gradyear);
-    });
 
     const onFinish = async () => {
-        if (!firstName){
+        if (!name){
             message.error('Name required!');
             return;
         }
-        if (!lastname){
+        if (!lastName){
             message.error('Last Name required!');
             return;
         }
@@ -33,11 +26,11 @@ const DataEntry = () => {
             message.error('Major required!');
             return;
         }
-        if (!credits){
+        if (!careerCredits){
             message.error('Career Credits required!');
             return;
         }
-        if (!gradyear){
+        if (!graduationYear){
             message.error('Graduation Year required!');
             return;
         }
@@ -46,11 +39,11 @@ const DataEntry = () => {
 
     const createNewStudent = async () => {
         const newStudent = DataStore.save(new Student({
-            firstName,
-            lastname,
+            name,
+            lastName,
             major,
-            credits,
-            gradyear
+            careerCredits: parseInt(careerCredits),
+            graduationYear: parseInt(graduationYear)
         }));
         setStudents(newStudent);
         message.success('New Student Entered');
@@ -62,14 +55,14 @@ const DataEntry = () => {
                 <Form.Item label={'First Name'} required >
                     <Input 
                     placeholder="Enter Name"
-                    value={firstName}
+                    value={name}
                     onChange={(e) => setName(e.target.value)}
                     />
                 </Form.Item>
                 <Form.Item label={'Last Name'} required >
                     <Input 
                     placeholder="Enter Last Name"
-                    value={lastname}
+                    value={lastName}
                     onChange={(e) => setLastName(e.target.value)}
                     />
                 </Form.Item>
@@ -83,14 +76,14 @@ const DataEntry = () => {
                 <Form.Item label={'Credits'} required >
                     <Input 
                     placeholder="Enter Career Credits"
-                    value={credits}
+                    value={careerCredits}
                     onChange={(e) => setCareerCredits(e.target.value)}
                     />
                 </Form.Item>
                 <Form.Item label={'Graduation Year'} required >
                     <Input 
                     placeholder="Enter Graduation Year"
-                    value={gradyear}
+                    value={graduationYear}
                     onChange={(e) => setGradYear(e.target.value)}
                     />
                 </Form.Item>
