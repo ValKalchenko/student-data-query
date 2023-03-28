@@ -1,22 +1,31 @@
+import { Layout, Image } from "antd";
+import AppRoutes from "./components/Routes";
+import SideMenu from "./components/SideMenu";
+
+
+const { Sider, Content, Footer } = Layout;
+
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Layout>
+      <Sider style={{backgroundColor: 'white'}}>
+        <Image
+          src="https://marvel-b1-cdn.bc0a.com/f00000000266434/www.chc.edu/sites/default/files/new_logo.png"
+          preview={false}
+        />
+        <SideMenu />
+      </Sider>
+      <Layout>
+        <Content>
+          <AppRoutes />
+        </Content>
+        <Footer style={{textAlign: 'center'}}>
+          Student Data Query @2023
+        </Footer>
+      </Layout>
+    </Layout>
+    
   );
 }
 
