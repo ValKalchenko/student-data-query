@@ -10,6 +10,11 @@
       "StackName": "amplify-studentdataquery-staging-25829",
       "StackId": "arn:aws:cloudformation:us-east-1:899557030629:stack/amplify-studentdataquery-staging-25829/4255a630-c794-11ed-b7f8-0a0b5b6cb27b",
       "AmplifyAppId": "d2lkbqu6iojdde"
+    },
+    "categories": {
+      "auth": {
+        "StudentDataQuery": {}
+      }
     }
   }
 }
