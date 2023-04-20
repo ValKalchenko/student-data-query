@@ -15,6 +15,10 @@ const SideMenu = () => {
             label: 'Data Entry'
         },
         {
+            key: 'query',
+            label: 'Data Query'
+        },
+        {
             key: 'signout',
             label: 'Sign Out'
         }

@@ -19,6 +19,9 @@ export declare type StudentUpdateFormInputValues = {
     major?: string;
     careerCredits?: number;
     graduationYear?: number;
+    courseTitle?: string;
+    courseCode?: string;
+    requirementsMet?: string;
 };
 export declare type StudentUpdateFormValidationValues = {
     name?: ValidationFunction<string>;
@@ -26,6 +29,9 @@ export declare type StudentUpdateFormValidationValues = {
     major?: ValidationFunction<string>;
     careerCredits?: ValidationFunction<number>;
     graduationYear?: ValidationFunction<number>;
+    courseTitle?: ValidationFunction<string>;
+    courseCode?: ValidationFunction<string>;
+    requirementsMet?: ValidationFunction<string>;
 };
 export declare type PrimitiveOverrideProps<T> = Partial<T> & React.DOMAttributes<HTMLDivElement>;
 export declare type StudentUpdateFormOverridesProps = {
@@ -35,6 +41,9 @@ export declare type StudentUpdateFormOverridesProps = {
     major?: PrimitiveOverrideProps<TextFieldProps>;
     careerCredits?: PrimitiveOverrideProps<TextFieldProps>;
     graduationYear?: PrimitiveOverrideProps<TextFieldProps>;
+    courseTitle?: PrimitiveOverrideProps<TextFieldProps>;
+    courseCode?: PrimitiveOverrideProps<TextFieldProps>;
+    requirementsMet?: PrimitiveOverrideProps<TextFieldProps>;
 } & EscapeHatchProps;
 export declare type StudentUpdateFormProps = React.PropsWithChildren<{
     overrides?: StudentUpdateFormOverridesProps | undefined | null;

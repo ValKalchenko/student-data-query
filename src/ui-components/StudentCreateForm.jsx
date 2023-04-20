@@ -28,6 +28,9 @@ export default function StudentCreateForm(props) {
     major: "",
     careerCredits: "",
     graduationYear: "",
+    courseTitle: "",
+    courseCode: "",
+    requirementsMet: "",
   };
   const [name, setName] = React.useState(initialValues.name);
   const [lastName, setLastName] = React.useState(initialValues.lastName);
@@ -38,6 +41,13 @@ export default function StudentCreateForm(props) {
   const [graduationYear, setGraduationYear] = React.useState(
     initialValues.graduationYear
   );
+  const [courseTitle, setCourseTitle] = React.useState(
+    initialValues.courseTitle
+  );
+  const [courseCode, setCourseCode] = React.useState(initialValues.courseCode);
+  const [requirementsMet, setRequirementsMet] = React.useState(
+    initialValues.requirementsMet
+  );
   const [errors, setErrors] = React.useState({});
   const resetStateValues = () => {
     setName(initialValues.name);
@@ -45,6 +55,9 @@ export default function StudentCreateForm(props) {
     setMajor(initialValues.major);
     setCareerCredits(initialValues.careerCredits);
     setGraduationYear(initialValues.graduationYear);
+    setCourseTitle(initialValues.courseTitle);
+    setCourseCode(initialValues.courseCode);
+    setRequirementsMet(initialValues.requirementsMet);
     setErrors({});
   };
   const validations = {
@@ -53,6 +66,9 @@ export default function StudentCreateForm(props) {
     major: [{ type: "Required" }],
     careerCredits: [{ type: "Required" }],
     graduationYear: [{ type: "Required" }],
+    courseTitle: [],
+    courseCode: [],
+    requirementsMet: [],
   };
   const runValidationTasks = async (
     fieldName,
@@ -85,6 +101,9 @@ export default function StudentCreateForm(props) {
           major,
           careerCredits,
           graduationYear,
+          courseTitle,
+          courseCode,
+          requirementsMet,
         };
         const validationResponses = await Promise.all(
           Object.keys(validations).reduce((promises, fieldName) => {
@@ -144,6 +163,9 @@ export default function StudentCreateForm(props) {
               major,
               careerCredits,
               graduationYear,
+              courseTitle,
+              courseCode,
+              requirementsMet,
             };
             const result = onChange(modelFields);
             value = result?.name ?? value;
@@ -172,6 +194,9 @@ export default function StudentCreateForm(props) {
               major,
               careerCredits,
               graduationYear,
+              courseTitle,
+              courseCode,
+              requirementsMet,
             };
             const result = onChange(modelFields);
             value = result?.lastName ?? value;
@@ -200,6 +225,9 @@ export default function StudentCreateForm(props) {
               major: value,
               careerCredits,
               graduationYear,
+              courseTitle,
+              courseCode,
+              requirementsMet,
             };
             const result = onChange(modelFields);
             value = result?.major ?? value;
@@ -232,6 +260,9 @@ export default function StudentCreateForm(props) {
               major,
               careerCredits: value,
               graduationYear,
+              courseTitle,
+              courseCode,
+              requirementsMet,
             };
             const result = onChange(modelFields);
             value = result?.careerCredits ?? value;
@@ -264,6 +295,9 @@ export default function StudentCreateForm(props) {
               major,
               careerCredits,
               graduationYear: value,
+              courseTitle,
+              courseCode,
+              requirementsMet,
             };
             const result = onChange(modelFields);
             value = result?.graduationYear ?? value;
@@ -277,6 +311,99 @@ export default function StudentCreateForm(props) {
         errorMessage={errors.graduationYear?.errorMessage}
         hasError={errors.graduationYear?.hasError}
         {...getOverrideProps(overrides, "graduationYear")}
+      ></TextField>
+      <TextField
+        label="Course title"
+        isRequired={false}
+        isReadOnly={false}
+        value={courseTitle}
+        onChange={(e) => {
+          let { value } = e.target;
+          if (onChange) {
+            const modelFields = {
+              name,
+              lastName,
+              major,
+              careerCredits,
+              graduationYear,
+              courseTitle: value,
+              courseCode,
+              requirementsMet,
+            };
+            const result = onChange(modelFields);
+            value = result?.courseTitle ?? value;
+          }
+          if (errors.courseTitle?.hasError) {
+            runValidationTasks("courseTitle", value);
+          }
+          setCourseTitle(value);
+        }}
+        onBlur={() => runValidationTasks("courseTitle", courseTitle)}
+        errorMessage={errors.courseTitle?.errorMessage}
+        hasError={errors.courseTitle?.hasError}
+        {...getOverrideProps(overrides, "courseTitle")}
+      ></TextField>
+      <TextField
+        label="Course code"
+        isRequired={false}
+        isReadOnly={false}
+        value={courseCode}
+        onChange={(e) => {
+          let { value } = e.target;
+          if (onChange) {
+            const modelFields = {
+              name,
+              lastName,
+              major,
+              careerCredits,
+              graduationYear,
+              courseTitle,
+              courseCode: value,
+              requirementsMet,
+            };
+            const result = onChange(modelFields);
+            value = result?.courseCode ?? value;
+          }
+          if (errors.courseCode?.hasError) {
+            runValidationTasks("courseCode", value);
+          }
+          setCourseCode(value);
+        }}
+        onBlur={() => runValidationTasks("courseCode", courseCode)}
+        errorMessage={errors.courseCode?.errorMessage}
+        hasError={errors.courseCode?.hasError}
+        {...getOverrideProps(overrides, "courseCode")}
+      ></TextField>
+      <TextField
+        label="Requirements met"
+        isRequired={false}
+        isReadOnly={false}
+        value={requirementsMet}
+        onChange={(e) => {
+          let { value } = e.target;
+          if (onChange) {
+            const modelFields = {
+              name,
+              lastName,
+              major,
+              careerCredits,
+              graduationYear,
+              courseTitle,
+              courseCode,
+              requirementsMet: value,
+            };
+            const result = onChange(modelFields);
+            value = result?.requirementsMet ?? value;
+          }
+          if (errors.requirementsMet?.hasError) {
+            runValidationTasks("requirementsMet", value);
+          }
+          setRequirementsMet(value);
+        }}
+        onBlur={() => runValidationTasks("requirementsMet", requirementsMet)}
+        errorMessage={errors.requirementsMet?.errorMessage}
+        hasError={errors.requirementsMet?.hasError}
+        {...getOverrideProps(overrides, "requirementsMet")}
       ></TextField>
       <Flex
         justifyContent="space-between"
